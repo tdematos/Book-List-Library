@@ -59,3 +59,24 @@ h1 {
   align-items: center;
   padding: 5px;
 }
+
+.form-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 30px;
+  background-color: antiquewhite;
+  border-radius: 1rem;
+}
+
+input {
+  margin: 10px;
+}
+
+.check-box-div {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
