@@ -1,5 +1,33 @@
 let myLibrary = [];
 
+// create the book element
+const body = document.querySelector(".body");
+const bookContainer = document.createElement("div");
+const titleOutput = document.createElement("div");
+const authorOutput = document.createElement("div");
+const pageNumberOutput = document.createElement("div");
+const readButton = document.createElement("button");
+const removeButton = document.createElement("button");
+
+body.appendChild(bookContainer);
+bookContainer.appendChild(titleOutput);
+titleOutput.innerText = "Book Title...";
+titleOutput.className = "title-section";
+bookContainer.appendChild(authorOutput);
+authorOutput.innerText = "Author";
+authorOutput.className = "author-section";
+bookContainer.appendChild(pageNumberOutput);
+pageNumberOutput.innerText = 5;
+pageNumberOutput.className = "page-number-section";
+bookContainer.appendChild(readButton);
+readButton.innerText = "read";
+bookContainer.appendChild(removeButton);
+removeButton.innerText = "remove";
+
+bookContainer.className = "book-container";
+readButton.className = "read-button";
+removeButton.className = "remove-button";
+
 //creates book obj
 class book {
   constructor(title, author, numberOfPages, read) {
@@ -25,37 +53,20 @@ function addBookToLibrary(book) {
 }
 
 addBookToLibrary(ThinkAndGrowRich);
-addBookToLibrary(harryPotter);
-addBookToLibrary(LordOfTheRings);
+// addBookToLibrary(harryPotter);
+// addBookToLibrary(LordOfTheRings);
+
+displayBook(myLibrary);
 
 //a function that loops through array and displays books
 function displayBook(array) {
   for (let i = 0; i < array.length; i++) {
-    return array[i];
+    titleOutput.innerText = array[i].title;
+    authorOutput.innerText = array[i].author;
+    pageNumberOutput.innerText = array[i].numberOfPages;
+    console.log(array[i]);
   }
 }
-
-displayBook(myLibrary);
-
-// create the book element
-const body = document.querySelector(".body");
-const bookContainer = document.createElement("div");
-const titleOutput = document.createElement("div");
-const authorOutput = document.createElement("div");
-const pageNumberOutput = document.createElement("div");
-const readButton = document.createElement("button");
-const removeButton = document.createElement("button");
-
-body.appendChild(bookContainer);
-bookContainer.appendChild(titleOutput);
-bookContainer.appendChild(authorOutput);
-bookContainer.appendChild(pageNumberOutput);
-bookContainer.appendChild(readButton);
-bookContainer.appendChild(removeButton);
-
-bookContainer.className = "book-container";
-readButton.className = "read-button";
-removeButton.className = "remove-button";
 
 //create a new book button that lets users add inputs in a form field
 const addBooksButton = document.querySelector(".add");
