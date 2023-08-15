@@ -37,8 +37,27 @@ function displayBook(array) {
 
 displayBook(myLibrary);
 
-//create a new book button that lets users add inputs in a form field
+// create the book element
 const body = document.querySelector(".body");
+const bookContainer = document.createElement("div");
+const titleOutput = document.createElement("div");
+const authorOutput = document.createElement("div");
+const pageNumberOutput = document.createElement("div");
+const readButton = document.createElement("button");
+const removeButton = document.createElement("button");
+
+body.appendChild(bookContainer);
+bookContainer.appendChild(titleOutput);
+bookContainer.appendChild(authorOutput);
+bookContainer.appendChild(pageNumberOutput);
+bookContainer.appendChild(readButton);
+bookContainer.appendChild(removeButton);
+
+bookContainer.className = "book-container";
+readButton.className = "read-button";
+removeButton.className = "remove-button";
+
+//create a new book button that lets users add inputs in a form field
 const addBooksButton = document.querySelector(".add");
 
 addBooksButton.addEventListener("click", function () {
