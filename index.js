@@ -43,6 +43,9 @@ function displayBook(array) {
   bookContainer.className = "book-container";
   readButton.className = "read-button";
   removeButton.className = "remove-button";
+  removeButton.addEventListener("click", function () {
+    bookContainer.remove();
+  });
 
   for (let i = 0; i < array.length; i++) {
     titleOutput.innerText = array[i].title;
@@ -105,6 +108,7 @@ addBooksButton.addEventListener("click", function () {
 
     addBookToLibrary(newBook);
     displayBook(myLibrary);
+    formContainer.remove();
   });
 
   console.log(body);
