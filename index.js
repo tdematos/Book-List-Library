@@ -1,32 +1,5 @@
 let myLibrary = [];
-
-// create the book element
 const body = document.querySelector(".body");
-const bookContainer = document.createElement("div");
-const titleOutput = document.createElement("div");
-const authorOutput = document.createElement("div");
-const pageNumberOutput = document.createElement("div");
-const readButton = document.createElement("button");
-const removeButton = document.createElement("button");
-
-body.appendChild(bookContainer);
-bookContainer.appendChild(titleOutput);
-titleOutput.innerText = "Book Title...";
-titleOutput.className = "title-section";
-bookContainer.appendChild(authorOutput);
-authorOutput.innerText = "Author";
-authorOutput.className = "author-section";
-bookContainer.appendChild(pageNumberOutput);
-pageNumberOutput.innerText = 5;
-pageNumberOutput.className = "page-number-section";
-bookContainer.appendChild(readButton);
-readButton.innerText = "read";
-bookContainer.appendChild(removeButton);
-removeButton.innerText = "remove";
-
-bookContainer.className = "book-container";
-readButton.className = "read-button";
-removeButton.className = "remove-button";
 
 //creates book obj
 class book {
@@ -38,28 +11,39 @@ class book {
   }
 }
 
-const harryPotter = new book("Harry Potter", "J.K Rowling", 356, true);
-const LordOfTheRings = new book("Lord of The Rings", "Frodo", 1396, false);
-const ThinkAndGrowRich = new book(
-  "Think and Grow Rich",
-  "Napolean Hill",
-  144,
-  true
-);
-
 //a function that adds book to library when called
 function addBookToLibrary(book) {
   myLibrary.push(book);
 }
 
-addBookToLibrary(ThinkAndGrowRich);
-// addBookToLibrary(harryPotter);
-// addBookToLibrary(LordOfTheRings);
-
-displayBook(myLibrary);
-
 //a function that loops through array and displays books
 function displayBook(array) {
+  const bookContainer = document.createElement("div");
+  const titleOutput = document.createElement("div");
+  const authorOutput = document.createElement("div");
+  const pageNumberOutput = document.createElement("div");
+  const readButton = document.createElement("button");
+  const removeButton = document.createElement("button");
+
+  body.appendChild(bookContainer);
+  bookContainer.appendChild(titleOutput);
+  titleOutput.innerText = "title";
+  titleOutput.className = "title-section";
+  bookContainer.appendChild(authorOutput);
+  authorOutput.innerText = "Author";
+  authorOutput.className = "author-section";
+  bookContainer.appendChild(pageNumberOutput);
+  pageNumberOutput.innerText = 5;
+  pageNumberOutput.className = "page-number-section";
+  bookContainer.appendChild(readButton);
+  readButton.innerText = "read";
+  bookContainer.appendChild(removeButton);
+  removeButton.innerText = "remove";
+
+  bookContainer.className = "book-container";
+  readButton.className = "read-button";
+  removeButton.className = "remove-button";
+
   for (let i = 0; i < array.length; i++) {
     titleOutput.innerText = array[i].title;
     authorOutput.innerText = array[i].author;
@@ -110,5 +94,26 @@ addBooksButton.addEventListener("click", function () {
   submitButton.className = "submit-button";
   submitButton.innerText = "Submit";
 
+  submitButton.addEventListener("click", function (e) {
+    e.preventDefault();
+    const newBook = new book(
+      titleInput.value,
+      authorInput.value,
+      numberInput.value,
+      true
+    );
+
+    addBookToLibrary(newBook);
+    displayBook(myLibrary);
+  });
+
   console.log(body);
 });
+
+// const LordOfTheRings = new book("Lord of The Rings", "Frodo", 1396, false);
+// const ThinkAndGrowRich = new book(
+//   "Think and Grow Rich",
+//   "Napolean Hill",
+//   144,
+//   true
+// );
