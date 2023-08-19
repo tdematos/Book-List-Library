@@ -140,7 +140,7 @@ input {
   font-size: 25px;
 }
 
-.read-button,
+#read-button,
 .remove-button {
   width: 250px;
   margin: 5px;
@@ -151,11 +151,11 @@ input {
   padding: 15px;
 }
 
-.read-button {
+#read-button {
   background-color: greenyellow;
 }
 
-.read-button:hover {
+#read-button:hover {
   background-color: yellowgreen;
 }
 

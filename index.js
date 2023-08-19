@@ -41,8 +41,22 @@ function displayBook(array) {
   removeButton.innerText = "remove";
 
   bookContainer.className = "book-container";
-  readButton.className = "read-button";
+  readButton.setAttribute("id", "read-button");
   removeButton.className = "remove-button";
+
+  readButton.addEventListener("click", function () {
+    const backgroundColor = (document.getElementById(
+      "read-button"
+    ).style.backgroundColor = "greenyellow");
+    console.log(backgroundColor);
+    if (backgroundColor == "greenyellow") {
+      document.getElementById("read-button").style.backgroundColor = "red";
+    } else {
+      document.getElementById("read-button").style.backgroundColor =
+        "greenyellow";
+    }
+  });
+
   removeButton.addEventListener("click", function () {
     bookContainer.remove();
   });
@@ -51,7 +65,6 @@ function displayBook(array) {
     titleOutput.innerText = array[i].title;
     authorOutput.innerText = array[i].author;
     pageNumberOutput.innerText = array[i].numberOfPages;
-    console.log(array[i]);
   }
 }
 
@@ -69,6 +82,7 @@ addBooksButton.addEventListener("click", function () {
   const submitButton = document.createElement("button");
   const radioButtonText = document.createElement("p");
   const checkBoxInput = document.createElement("input");
+  const modalDiv = document.createElement("div");
 
   body.appendChild(formContainer);
   formContainer.appendChild(formField);
@@ -102,18 +116,16 @@ addBooksButton.addEventListener("click", function () {
     const newBook = new book(
       titleInput.value,
       authorInput.value,
-      numberInput.value,
-      true
+      numberInput.value
     );
 
     addBookToLibrary(newBook);
     displayBook(myLibrary);
     formContainer.remove();
   });
-
-  console.log(body);
 });
 
+console.log(myLibrary);
 // const LordOfTheRings = new book("Lord of The Rings", "Frodo", 1396, false);
 // const ThinkAndGrowRich = new book(
 //   "Think and Grow Rich",
