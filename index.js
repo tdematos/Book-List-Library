@@ -36,26 +36,14 @@ function displayBook(array) {
   pageNumberOutput.innerText = 5;
   pageNumberOutput.className = "page-number-section";
   bookContainer.appendChild(readButton);
-  readButton.innerText = "read";
+  readButton.innerText = "Read";
   bookContainer.appendChild(removeButton);
   removeButton.innerText = "remove";
 
   bookContainer.className = "book-container";
   readButton.setAttribute("id", "read-button");
+  readButton.setAttribute("onclick", "changeColor()");
   removeButton.className = "remove-button";
-
-  readButton.addEventListener("click", function () {
-    const backgroundColor = (document.getElementById(
-      "read-button"
-    ).style.backgroundColor = "greenyellow");
-    console.log(backgroundColor);
-    if (backgroundColor == "greenyellow") {
-      document.getElementById("read-button").style.backgroundColor = "red";
-    } else {
-      document.getElementById("read-button").style.backgroundColor =
-        "greenyellow";
-    }
-  });
 
   removeButton.addEventListener("click", function () {
     bookContainer.remove();
@@ -65,6 +53,18 @@ function displayBook(array) {
     titleOutput.innerText = array[i].title;
     authorOutput.innerText = array[i].author;
     pageNumberOutput.innerText = array[i].numberOfPages;
+  }
+}
+
+function changeColor() {
+  const button = document.getElementById("read-button");
+
+  if (button.style.backgroundColor === "greenyellow") {
+    button.style.backgroundColor = "red";
+    button.innerText = "Not Read";
+  } else {
+    button.style.backgroundColor = "greenyellow";
+    button.innerText = "Read";
   }
 }
 
