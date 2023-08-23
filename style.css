@@ -140,9 +140,9 @@ input {
   font-size: 25px;
 }
 
-#read-button,
+.read-button,
 .remove-button {
-  width: 250px;
+  width: 15rem;
   margin: 5px;
   font-size: 1rem;
   font-family: var(--cursive-font-family);
@@ -151,11 +151,11 @@ input {
   padding: 15px;
 }
 
-#read-button {
+.read-button {
   background-color: greenyellow;
 }
 
-#read-button:hover {
+.read-button:hover {
   background-color: yellowgreen;
 }
 

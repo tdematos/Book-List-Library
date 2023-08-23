@@ -2,14 +2,22 @@ let myLibrary = [];
 const body = document.querySelector(".body");
 
 //creates book obj
-class book {
-  constructor(title, author, numberOfPages, read) {
-    this.title = title;
-    this.author = author;
-    this.numberOfPages = numberOfPages;
-    this.read = read;
-  }
+function Book(title, author, numberOfPages, read) {
+  this.title = title;
+  this.author = author;
+  this.numberOfPages = numberOfPages;
+  this.read = read;
 }
+
+Book.prototype.changeButtonColor = function (button) {
+  if (button.style.backgroundColor === "greenyellow") {
+    button.style.backgroundColor = "red";
+    button.innerText = "Not Read";
+  } else {
+    button.style.backgroundColor = "greenyellow";
+    button.innerText = "Read";
+  }
+};
 
 //a function that adds book to library when called
 function addBookToLibrary(book) {
@@ -36,14 +44,23 @@ function displayBook(array) {
   pageNumberOutput.innerText = 5;
   pageNumberOutput.className = "page-number-section";
   bookContainer.appendChild(readButton);
+  readButton.className = "read-button";
   readButton.innerText = "Read";
   bookContainer.appendChild(removeButton);
   removeButton.innerText = "remove";
 
   bookContainer.className = "book-container";
-  readButton.setAttribute("id", "read-button");
-  readButton.setAttribute("onclick", "changeColor()");
+  readButton.className = "read-button";
+
   removeButton.className = "remove-button";
+
+  readButton.addEventListener("click", function () {
+    const bookIndex = Array.from(bookContainer.parentNode.children).indexOf(
+      bookContainer
+    );
+
+    myLibrary[bookIndex].changeButtonColor(this);
+  });
 
   removeButton.addEventListener("click", function () {
     bookContainer.remove();
@@ -53,18 +70,6 @@ function displayBook(array) {
     titleOutput.innerText = array[i].title;
     authorOutput.innerText = array[i].author;
     pageNumberOutput.innerText = array[i].numberOfPages;
-  }
-}
-
-function changeColor() {
-  const button = document.getElementById("read-button");
-
-  if (button.style.backgroundColor === "greenyellow") {
-    button.style.backgroundColor = "red";
-    button.innerText = "Not Read";
-  } else {
-    button.style.backgroundColor = "greenyellow";
-    button.innerText = "Read";
   }
 }
 
@@ -113,7 +118,7 @@ addBooksButton.addEventListener("click", function () {
 
   submitButton.addEventListener("click", function (e) {
     e.preventDefault();
-    const newBook = new book(
+    const newBook = new Book(
       titleInput.value,
       authorInput.value,
       numberInput.value
