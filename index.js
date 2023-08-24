@@ -21,6 +21,9 @@ Book.prototype.changeButtonColor = function (button) {
 
 //a function that adds book to library when called
 function addBookToLibrary(book) {
+  const checkBox = document.querySelector(".check-box");
+  book.read = checkBox.checked;
+
   myLibrary.push(book);
 }
 
@@ -70,6 +73,15 @@ function displayBook(array) {
     titleOutput.innerText = array[i].title;
     authorOutput.innerText = array[i].author;
     pageNumberOutput.innerText = array[i].numberOfPages;
+
+    const readButton = bookContainer.querySelector(".read-button");
+    if (array[i].read) {
+      readButton.style.backgroundColor = "greenyellow";
+      readButton.innerText = "Read";
+    } else {
+      readButton.style.backgroundColor = "red";
+      readButton.innerText = "Not Read";
+    }
   }
 }
 
@@ -111,6 +123,7 @@ addBooksButton.addEventListener("click", function () {
   numberInput.type = "number";
   numberInput.setAttribute("name", "number");
   checkBoxInput.type = "checkbox";
+  checkBoxInput.className = "check-box";
   radioButtonText.innerText = "Have you read it?";
   radioButtonDiv.className = "check-box-div";
   submitButton.className = "submit-button";
@@ -118,10 +131,13 @@ addBooksButton.addEventListener("click", function () {
 
   submitButton.addEventListener("click", function (e) {
     e.preventDefault();
+    const checkBox = document.querySelector(".check-box");
+
     const newBook = new Book(
       titleInput.value,
       authorInput.value,
-      numberInput.value
+      numberInput.value,
+      checkBox.checked
     );
 
     addBookToLibrary(newBook);
@@ -131,10 +147,3 @@ addBooksButton.addEventListener("click", function () {
 });
 
 console.log(myLibrary);
-// const LordOfTheRings = new book("Lord of The Rings", "Frodo", 1396, false);
-// const ThinkAndGrowRich = new book(
-//   "Think and Grow Rich",
-//   "Napolean Hill",
-//   144,
-//   true
-// );

@@ -162,3 +162,8 @@ input {
 .remove-button:hover {
   background-color: lightgrey;
 }
+
+.github-profile-link {
+  text-decoration: none;
+  color: rgb(255, 85, 85);
+}
